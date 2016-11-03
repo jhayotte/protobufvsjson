@@ -7,7 +7,7 @@ There is two servers: One proto-server and one json-server reading messages rece
 
 ##scenario
 A lapstime of 60 seconds is given to the client to send message to the server. Afterward we get the number of message sent and we clearly see a difference between both protocol:
-![alt tag](https://github.com/jhayotte/protobufvsjson/perfcompare-nbmessage.JPG)
+![alt tag](https://github.com/jhayotte/protobufvsjson/blob/master/perfcompare-nbmessage.JPG)
 
 This is clearly due to the fact that protobuf gives a better binary serialisation and the unmarshall step is faster due to the schema and contract between the client and server that avoid us to do reflection to determine the type of message received. 
 
