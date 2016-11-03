@@ -1,19 +1,19 @@
-JSON trouble ->
+#potobuf vs json
+This project benchmark both technologies.
 
-Better binary serialisation. You get a schema, a contract.. much better than Javascript
+#explanation
 
+There is two servers: One proto-server and one json-server reading messages received. Then there is one client sending messages in a predefine format either json either protobuf.
 
+##scenario
+A lapstime of 60 seconds is given to the client to send message to the server. Afterward we get the number of message sent and we clearly see a difference between both protocol:
+![alt tag](https://github.com/jhayotte/protobufvsjson/perfcompare-nbmessage.JPG)
 
-Kubernetes :
+This is clearly due to the fact that protobuf gives a better binary serialisation and the unmarshall step is faster due to the schema and contract between the client and server that avoid us to do reflection to determine the type of message received. 
 
-PODS are like VMs it contains containers
+#Profiling CPU
 
-Kelsey Hightower  - Great Talk http://www.ustream.tv/recorded/86187859?utm_campaign=t.co&utm_source=ustre.am/:5PDoL&utm_medium=social&utm_content=20161023022442
+Run our profiling tool when the client is talking to the server with this command: `go tool pprof http://localhost:6060/debug/pprof/profile`
 
-
-
-
-Run our profiling tool when the client is talking to the server with this command: go tool pprof http://localhost:6060/debug/pprof/profile
-
-Install Graphviz to visualize our pprof result http://www.graphviz.org/Download_windows.php
+Install Graphviz to visualize pprof result http://www.graphviz.org/Download_windows.php
 
