@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package pointpb;
+
+message Location {
+	repeated Point Points = 1;
+}
+
+message Point {         
+	string assetID = 1; 
+	double Lat     =2;
+	double Lng     =3;
+	string Datetime = 4;        
+}
+
+message Request {
+	string assetID = 1;
+}
+
+message Response {
+	Point point = 1;
+}
+
+service Trackersvc {
+	rpc Point (Request) returns (Response);
+	rpc PointStream (Request) returns (stream Response);
+}
